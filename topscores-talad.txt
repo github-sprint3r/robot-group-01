@@ -1,0 +1,19 @@
+*** Settings ***
+Library           Selenium2Library
+Suite Teardown    Close All Browsers
+
+*** Variables ***
+${TARAD_PRODUCT_URL}     http://www.tarad.com/product
+
+*** Testcases ***
+Test Tarad's Product Checkout
+  Open Product    5748253
+  Click Button
+
+*** Keywords ***
+Open Product
+  [Arguments]    ${productId}
+  Open Browser   ${TARAD_PRODUCT_URL}/${productId}
+
+Click Buy
+  Click Button     f_buy

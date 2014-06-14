@@ -22,5 +22,6 @@ Choose Item
 	Click Element    xpath=//div[@class='getitem8']/a
 
 Buy With Non-Member
-
+	Checkbox Should Not Be Selected    check_guest_register
+	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
 

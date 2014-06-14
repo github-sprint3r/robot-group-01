@@ -18,12 +18,12 @@ Open Product
   Maximize Browser Window
 
 Buy Product
-  [Arguments]     ${quantity}
+  [Arguments]                  ${quantity}
   Select From List By Value    product_qty    ${quantity}
-  Click Button    f_buy
-  Wait Until Page Contains    ${quantity} ชิ้น
-  Click Element    btn-payment
+  Click Button                 f_buy
+  Wait Until Page Contains     ${quantity} ชิ้น
+  Click Element                btn-payment
 
 Buy Without Register
   Unselect Checkbox    check_guest_register
-  Click Element        css=div.login_check_register_btn_TH
+  Click Element        xpath=//*[@id="login-frm-guest"]/fieldset/div[4]/button

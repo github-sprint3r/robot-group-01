@@ -27,8 +27,29 @@ Buy Product
 	Click Button     ซื้อทันทีไม่ต้องสมัครสมาชิก
 
 	Wait Until Page Contains        กรุณาเลือก วิธีการชำระเงิน
-	#Click Element         โอนเงินผ่านธนาคาร
+	Click Element          xpath=//*[@id="bill-payment"]/a/span
+	Wait Until Page Contains        ท่านสามารถชำระเงินค่าผ่านทางตู้ ATM
+	Select Checkbox       bill_kbank
+	Click Button       next-btn
 
+	Wait Until Page Contains        ข้อมูลผู้สั่งซื้อ
+	#Wait Until Page Contains        วิธีการจัดส่ง
+	Set Selenium Speed    3 seconds
+	#Set Selenium Speed    1 seconds
+
+	Input Text    send_firstname      weerachai
+	Input Text    send_lastname       wongthongserm
+	Input Text    send_address        341 พรุราม 2
+	Select From List By Value     send_province       1
+	Set Selenium Speed    2 seconds
+	Select From List By Value      send_city      816_10150
+	Input Text     send_district     แสมดำ
+	#Wait Until Page Contains      10150
+	Textfield Value Should Be      send_postcode    10150
+    Input Text     send_email      cybertung@gmail.com
+    Input Text     send_mobile     0807712424
+    Set Selenium Speed    2 seconds
+    Click Button         next-btn
 
 
 

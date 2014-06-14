@@ -6,17 +6,17 @@ Suite Teardown	 Close Browsers
 ${TARAD URL}    http://www.tarad.com/product/5748253
 
 *** Test Case ***
-By Item
+Buy Item
 	Choose Item
 	Buy With Non-Member
-	#Choose payment channel
-	#Fill in addess
+	Choose payment channel
+	Fill in addess
 
 	
 *** Keywords ***
 Choose Item
 	Open Browser    ${TARAD URL}
-	Select From List By Value    product_qty    2
+	Select From List By Index     product_qty    2
 	Click Button    f_buy
 	Wait Until Page Contains    2
 	Wait Until Page Contains    2
@@ -28,3 +28,20 @@ Buy With Non-Member
 	Checkbox Should Not Be Selected    check_guest_register
 	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
 
+Choose payment channel
+	Select From List By Index     bill-payment    5
+	#Click Element    xpath=//li[@id='bill-payment']/a
+	Select Radio Button    bill_ktb
+	Click Button    next-btn
+
+Fill in addess
+	Input Text    send_firstname    natjira
+	Input Text    send_lastname     chockthavorn
+	Input Text    send_address      BKK
+	Select From List By Index     send_province    1
+	Select From List By Index     send_city    836_10310
+	Input Text    send_district    ห้วยขวาง
+	Input Text    send_postcode    10310
+	Input Text    send_email    test@mail.com
+	Input Text    send_mobile   0123456789
+	Click Button    next-btn

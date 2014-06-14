@@ -1,0 +1,35 @@
+*** Settings ***
+Library    Selenium2Library
+#Suite Teardown    Close All Browsers
+
+*** Variables ***
+${TARAD URL}    http://www.tarad.com/product/5748253
+
+
+*** Testcases ***
+Purchase Goods
+	Buy Product
+
+
+*** Keywords ***
+Buy Product
+
+	Open Browser    ${TARAD URL}
+	Select From List By Index     product_qty      1
+	Click Button    f_buy
+	Wait Until Page Contains     จำนวน : 2 ชิ้น
+	Click Element    btn-payment
+
+
+	#Click Button    btn-payment
+	#Click Button    cart
+	#Wait Until Page Contains     รหัส387
+	#Click Button    btn-payment
+
+	#Wait Until Page Contains    สั่งซื้อแบบไม่ใช่สมาชิก
+
+	#Click Button    login-frm-guest
+
+	#Input Text    gbqfq    ${Keyword}
+	#Click Button    gbqfb
+	#Wait Until Page Contains    ${Expected Result}

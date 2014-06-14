@@ -26,5 +26,5 @@ Buy online
 	Wait Until Page Contains      ข้อมูลผู้สั่งซื้อ
 	Input Text                    send_firstname     Anuchit
 	Input Text                    send_lastname      Prasertsang
-send_firstname
+
 *** Keywords ***

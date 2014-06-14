@@ -7,5 +7,6 @@ BuyTarad
 	Open Browser    http://www.tarad.com/product/5748253
 	Select From List    product_qty   2
 	Click Button    f_buy
-
+	Wait Until Page Contains   2 ชิ้น
+	Click Element    btn-payment
 *** Keywords ***

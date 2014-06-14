@@ -15,5 +15,8 @@ Test tarad.com
     Unselect Checkbox    check_guest_register
     Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
     Wait Until Page Contains    กรุณาเลือก วิธีการชำระเงิน
-    Click Element       bill-payment
+    Click Element       xpath=//a[@href='#bill-payment-detail']
+    Wait Until Page Contains    กสิกรไทย
+    Radio Button Should Be Set To    bank_receive    scb
+    Select Radio Button    bank_receive    kbank
 *** Keywords ***

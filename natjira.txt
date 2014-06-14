@@ -1,29 +1,30 @@
 *** Settings ***
 Library	         Selenium2Library
-Suite Teardown	 Close All Browsers
+Suite Teardown	 Close Browsers
 
 *** Variables ***
 ${TARAD URL}    http://www.tarad.com/product/5748253
 
 *** Test Case ***
 By Item
-	Open Browser    ${TARAD URL}
-	
+	Choose Item
+	Buy With Non-Member
+	#Choose payment channel
+	#Fill in addess
+
 	
 *** Keywords ***
-Flow data
-	[Arguments]     ${keyword}     ${expected_result}
-	Search robot     ${keyword}
-	Result robot      ${expected_result}
+Choose Item
+	Open Browser    ${TARAD URL}
+	Select From List By Value    product_qty    2
+	Click Button    f_buy
+	Wait Until Page Contains    2
+	Wait Until Page Contains    2
+	Click Button    btn-payment
 
+	Click Element    xpath=//div[@class='getitem8']/a
 
-Search robot
-	[Arguments]    ${keyword}
-	Open Browser    ${GOOGLE URL}
+Buy With Non-Member
+	Checkbox Should Not Be Selected    check_guest_register
+	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
 
-	Input Text    gbqfq    ${keyword}
-	Click Button    gbqfb
-
-Result robot
-	[Arguments]    ${expected result}
-	Wait Until Page Contains    ${expected_result}

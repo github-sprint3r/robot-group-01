@@ -1,0 +1,19 @@
+*** Setting ***
+Library           Selenium2Library
+#Suite Teardown    Close All Browsers
+*** Variables ***
+${TARAD URL}    http://www.tarad.com/product/5748253
+*** Testcases ***
+Test tarad.com
+    Open Browser    ${TARAD URL}
+    Select From List    product_qty    2
+    Click Button        f_buy
+    Mouse Over          cart
+    Wait Until Page Contains    2 ชิ้น
+    Click Element       btn-payment
+    Checkbox Should Be Selected    check_guest_register
+    Unselect Checkbox    check_guest_register
+    Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+    Wait Until Page Contains    กรุณาเลือก วิธีการชำระเงิน
+    Click Element       bill-payment
+*** Keywords ***

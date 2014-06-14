@@ -9,11 +9,20 @@ Buy online
 	Maximize Browser Window
 	Select From List By Value     product_qty    2
 	Click Button                  f_buy
+	Set Selenium Implicit Wait    7
 	Wait Until Page Contains      จำนวนรวม:2 ชิ้น
 	Wait Until Page Contains Element    btn-payment    30
 
 	Click Element                  btn-payment
-	#Wait Until Page Contains      สั่งซื้อแบบไม่ใช่สมาชิก
-	#Unselect Checkbox             check_guest_register
+	Wait Until Page Contains      สั่งซื้อแบบไม่ใช่สมาชิก
+	Checkbox Should Be Selected   check_guest_register
+	Unselect Checkbox             check_guest_register
+	Checkbox Should Not Be Selected   check_guest_register
+	Click Button                   ซื้อทันทีไม่ต้องสมัครสมาชิก
 	#Click Button                  /html/body/div[3]/div/div[3]/div[2]/div/form/fieldset/div[4]/button
+	Click Element                  xpath=//li[@id='bill-payment']/a
+	Click Element                  bill_bay
+	#Select Radio Button            bill_bay
+
+	Click Button                   next-btn
 *** Keywords ***

@@ -1,0 +1,69 @@
+*** Settings ***
+Library		Selenium2Library
+#Close All Browsers
+
+*** Variables ***
+${TARAD_PRODUCT_DETAIL}     http://tarad.com/product/5748253
+
+
+*** Testcases ***
+Rule Open Order in Tarads.com
+	Open Product Detail
+	Order Product
+	Process Product Carts
+	Process Payment by Non Member Without Registration
+	Select Payment Channel
+	Input Shipping Information
+#	Validate Summary Page
+
+
+*** Keywords ***
+Open Product Detail
+	Open Browser     ${TARAD_PRODUCT_DETAIL}
+	Maximize Browser Window
+	
+
+Order Product
+	Select From List By Label     product_qty    2
+	Click Button    f_buy
+
+Process Product Carts
+	Wait Until Page Contains       จำนวนรวม:2 ชิ้น
+	Wait Until Page Contains       ราคารวม: 1,980.00 บาท
+
+	Click Element                  btn-payment
+
+Process Payment by Non Member Without Registration
+	Unselect Checkbox                    check_guest_register
+	Checkbox Should Not Be Selected      check_guest_register
+	Click Button                         ซื้อทันทีไม่ต้องสมัครสมาชิก
+
+Select Payment Channel
+	Click Element                   xpath=//*[@id="bill-payment"]/a/span
+	Wait Until Page Contains        โอนเงินผ่านธนาคารโดยใช้รหัสบริษัท
+	Select Radio Button             bank_receive       bbl
+	Set Selenium Speed              1 seconds
+	Click Button                    next-btn
+	Set Selenium Speed              1 seconds
+	Wait until Page Contains        ข้อมูลผู้สั่งซื้อ
+	
+
+Input Shipping Information
+	
+	Input Text     send_firstname     Pasuwat
+	Input Text     send_lastname      Wang-arrayagul
+	Input Text     send_address       33/323 Soi Chockchai 4
+	Select From List By Label         send_country      ไทย
+	Set Selenium Speed              1 seconds
+	Select From List By Label         send_province     กรุงเทพมหานคร
+	Set Selenium Speed              1 seconds
+	Select From List By Label         send_city         ลาดพร้าว
+	Set Selenium Speed              1 seconds
+	Input Text     send_district      ลาดพร้าว
+	#Input Text     end_postcode       10230
+	Input Text     send_email         pasuwatw@gmail.com
+	Input Text     send_mobile        0814279905
+	Set Selenium Speed              1 seconds
+	Click Button            next-btn	
+
+#Validate Summary Page

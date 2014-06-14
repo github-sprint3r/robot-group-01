@@ -7,19 +7,12 @@ ${URL}   http://www.tarad.com/product/5748253
 
 *** Testcases ***
 Rule tarad
-	[Template]   login
-	natto1903@gmail.com    xxx
-
+	#[Template]   login
+	login
 
 
 *** Keywords ***
 login
-	[Arguments]    ${user}    ${pass}
-	inputdata         ${user}    ${pass}
-	#Found          ${expected result}
-
-inputdata 
-	[Arguments]     ${user}    ${pass}
 	Open Browser    ${URL}
 	#Input Text      Email    ${user}
 	#Input Text      Passwd    ${pass}

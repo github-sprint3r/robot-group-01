@@ -6,6 +6,7 @@ Library    Selenium2Library
 *** TestCases ***
 Open url tarad
 	Open Browser    http://www.tarad.com/product/5748253
-
+Select product
+	Select From List By Value    product_qty    2
 
 *** Keywords ***

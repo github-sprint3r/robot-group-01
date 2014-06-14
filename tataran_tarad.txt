@@ -1,0 +1,36 @@
+*** Settings ***
+Library					Selenium2Library
+#Suite Teardown    		Close All Browsers
+
+*** Variables ***
+${TARAD_URL}    		http://www.tarad.com/product/5748253
+
+*** Testcases ***
+Open Tarad
+	Open Browser    		${TARAD_URL}
+	Maximize Browser Window
+	Select From List By Index    product_qty    1
+	Click Button    		f_buy
+	Wait Until Page Contains    จำนวนรวม:2 ชิ้น
+	Go To    http://order.tarad.com/cart/buy?language=thai
+	Unselect Checkbox    check_guest_register
+	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+	Click Element    xpath=//html/body/div[3]/div[2]/div[1]/div[4]/fieldset/div/ul/li[2]/a
+	Select Radio Button    bank_receive    kbank
+	Set Selenium Speed    1
+	Click Button    next-btn
+	Set Selenium Speed    0.5
+	Input Text    send_firstname    Tataran
+	Input Text    send_lastname    Thowpet
+	Input Text    send_address    197 RayGardenApartment (Room304) Nathog 9 Ratchadaphisek Road
+	Select From List By Value    send_province    1
+	Select From List By Value    send_city    828_10400
+	Set Selenium Speed    0.5
+	Input Text    send_district    ดินแดง
+	Input Text    send_email    tataran024@gmail.com
+	Input Text    send_mobile    0922625553
+	Click Button    next-btn
+
+
+*** Keywords ***
+

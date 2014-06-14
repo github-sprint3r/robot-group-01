@@ -1,0 +1,55 @@
+*** Settings ***
+Library	          Selenium2Library
+Suite Teardown    Close All Browsers
+
+*** Variables ***
+${TARAD URL}    http://www.tarad.com/product/5748253
+
+*** Testcases ***
+Buy An Item
+	Open Browser    ${TARAD_URL}
+	Maximize Browser Window
+	Select From List By Value    product_qty    2
+	Click Button     f_buy
+	Wait Until Element Is Visible    btn-payment
+	
+	# Verify two pieces
+	Wait Until Page Contains    2 ชิ้น  
+
+	# Click order button
+	Click Element     xpath=//div[@id='flyout_cart']//a[@class='normal_a']
+	
+	# Click not register and continue
+	Unselect Checkbox    check_guest_register
+	Click Element     xpath=//button[@type='submit']
+	
+	# Select bank transfer by SCB
+	Click Element     xpath=//li[@id='bill-payment']/a
+	Wait Until Element Is Visible    xpath=//input[@id='bill_kbank']
+	Click Element     xpath=//input[@id='bill_kbank']
+	Click Button      next-btn
+	
+	# Fill customer information
+	Wait Until Page Contains    ข้อมูลผู้สั่งซื้อ
+	Input Text    send_firstname    ราชันย์
+	Input Text    send_lastname     เจริญพงษ์
+	Input Text    send_address      156
+	Select From List By Label    send_country    ไทย
+	Set Selenium Speed    3
+	Select From List By Label    send_province   กรุงเทพมหานคร
+	Set Selenium Speed    2
+	Select From List By Label    send_city       ภาษีเจริญ
+	Input Text    send_district     บางหว้า
+	Element Should Contain    send_postcode    10160
+	Input Text    send_email     myemail@hotmail.com
+	Input Text    send_mobile    0233344458
+	Click Button    next-btn
+
+	# Confirm order page and verify information
+	Wait Until Page Contains    สินค้าในตะกร้า 
+	Page Should Contain    ราชันย์ เจริฐพงษ์
+	Page Should Contain    156 บางหว้า ภาษีเจริญ กรุงเทพมหานคร 10160, ไทย
+	Page Should Contain    myemail@hotmail.com
+	Page Should Contain    0233344449
+
+*** Keywords ***

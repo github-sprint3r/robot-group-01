@@ -9,6 +9,8 @@ ${TARAD URL}    http://www.tarad.com/product/5748253
 By Item
 	Choose Item
 	Buy With Non-Member
+	#Choose payment channel
+	#Fill in addess
 
 	
 *** Keywords ***
@@ -18,6 +20,7 @@ Choose Item
 	Click Button    f_buy
 	Wait Until Page Contains    2
 	Wait Until Page Contains    2
+	Click Button    btn-payment
 
 	Click Element    xpath=//div[@class='getitem8']/a
 

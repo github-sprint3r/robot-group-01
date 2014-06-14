@@ -1,0 +1,48 @@
+*** Settings ***
+Library    Selenium2Library
+#Suite Teardown    Close All Browsers
+
+*** Variables ***
+${TARAD URL}    http://www.tarad.com/product/5748253
+
+
+*** Testcases ***
+Purchase Goods
+	Buy Product
+
+
+*** Keywords ***
+Buy Product
+
+	Open Browser    ${TARAD URL}
+	Select From List By Index     product_qty      1
+	Click Button    f_buy
+	Wait Until Page Contains     จำนวน : 2 ชิ้น
+	Click Element    btn-payment
+	Wait Until Page Contains      สมาชิก รับส่วนลดในทุกโปรโมชั่นพิเศษ ทุกวัน ทุกสัปดาห์ ตลอดเดือน
+
+	Checkbox Should Be Selected     check_guest_register
+	Unselect Checkbox     check_guest_register
+	Checkbox Should Not Be Selected       check_guest_register
+	Click Button     ซื้อทันทีไม่ต้องสมัครสมาชิก
+
+	Wait Until Page Contains        กรุณาเลือก วิธีการชำระเงิน
+	#Click Element         โอนเงินผ่านธนาคาร
+
+
+
+
+
+
+	#Click Button    btn-payment
+	#Click Button    cart
+	#Wait Until Page Contains     รหัส387
+	#Click Button    btn-payment
+
+	#Wait Until Page Contains    สั่งซื้อแบบไม่ใช่สมาชิก
+
+	#Click Button    login-frm-guest
+
+	#Input Text    gbqfq    ${Keyword}
+	#Click Button    gbqfb
+	#Wait Until Page Contains    ${Expected Result}

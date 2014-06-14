@@ -1,0 +1,26 @@
+*** Settings ***
+Library              Selenium2Library
+#Suite Teardown       Close All Browsers
+
+*** Variables ***
+${TARAD}    http://www.tarad.com/product/5748253
+
+*** Testcases ***
+open tarad
+	Open Browser         ${TARAD}
+	Select From List     product_qty    2
+	Click Button         f_buy
+	Wait Until Page Contains    จำนวน : 2 ชิ้น
+	Click Element        xpath=//div[@class='getitem8']/a
+	Unselect Checkbox    check_guest_register
+ 	Click Element        xpath=//div[@class='login_check_register_btn_TH']/button
+ 	Click Element        xpath=//*[@id='bill-payment']/a
+ 	Click Element        xpath=//*[@id='bill_bbl']
+ 	Click Element        xpath=//*[@id='next-btn']
+ 	Set Selenium Speed    3
+ 	Input Text           send_firstname    teepipat
+ 	Input Text           send_lastname     seangsee
+ 	Input Text           send_address      823
+ 	Select From List By Value      send_country    TH
+
+*** Keywords ***

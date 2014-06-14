@@ -12,4 +12,9 @@ BuyTarad
 	Checkbox Should Be Selected    check_guest_register
 	Unselect Checkbox   check_guest_register
 	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+	Click Element   xpath=//a[@href='#bill-payment-detail']
+	Wait Until Page Contains   	กรุงไทย
+	Select Radio Button    bank_receive   ktb
+	Wait Until Page Contains   	ขั้นตอนถัดไป
+	Click Button    ขั้นตอนถัดไป
 *** Keywords ***

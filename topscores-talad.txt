@@ -1,6 +1,6 @@
 *** Settings ***
 Library           Selenium2Library
-Suite Teardown    Close All Browsers
+#Suite Teardown    Close All Browsers
 
 *** Variables ***
 ${TARAD_PRODUCT_URL}     http://www.tarad.com/product
@@ -8,9 +8,20 @@ ${TARAD_PRODUCT_URL}     http://www.tarad.com/product
 *** Testcases ***
 Test Tarad's Product Checkout
   Open Product    5748253
+  Buy Product     2
+  Buy Without Register
 
 *** Keywords ***
 Open Product
   [Arguments]    ${productId}
   Open Browser   ${TARAD_PRODUCT_URL}/${productId}
+  Maximize Browser Window
+
+Buy Product
+  [Arguments]     ${quantity}
+  Select From List By Value    product_qty    ${quantity}
   Click Button    f_buy
+  Wait Until Page Contains    ${quantity} ชิ้น
+  Click Element    btn-payment
+
+Buy Without Register

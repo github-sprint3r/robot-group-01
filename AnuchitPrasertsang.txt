@@ -23,7 +23,6 @@ Buy online
 	Click Element                  bill_bay
 
 	Click Button                  next-btn
-	#Wait Until Page Contains      ข้อมูลผู้สั่งซื้อ
 	Set Selenium Speed            2 second
 	Wait Until Page Contains      dressuphouse
 	Set Selenium Speed            0.5 second
@@ -38,8 +37,5 @@ Buy online
 	Input Text                    send_mobile        0914725368
 	Input Text                    send_remark        So wh....
 	Click Button                  next-btn
-#Set Selenium Speed 2 second
-#Select From List By Index send_city 5
-#Set Selenium Speed 0.5 second
-#send_postcode
+	Unselect Checkbox             sms_checkbox
 *** Keywords ***

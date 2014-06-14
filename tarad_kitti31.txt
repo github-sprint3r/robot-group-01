@@ -1,0 +1,11 @@
+*** Settings ***
+Library    Selenium2Library
+
+*** Variables ***
+
+*** TestCases ***
+Open url tarad
+	Open Browser    http://www.tarad.com/product/5748253
+
+
+*** Keywords ***

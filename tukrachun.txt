@@ -14,7 +14,8 @@ Buy An Item
 	Wait Until Element Is Visible    btn-payment
 	
 	# Verify two pieces
-	
+	Wait Until Page Contains    2 ชิ้น  
+
 	# Click order button
 	Click Element     xpath=//div[@id='flyout_cart']//a[@class='normal_a']
 	
@@ -24,8 +25,8 @@ Buy An Item
 	
 	# Select bank transfer by SCB
 	Click Element     xpath=//li[@id='bill-payment']/a
-	Wait Until Element Is Visible    xpath=//input[@id='bill_scb']
-	Click Element     xpath=//input[@id='bill_scb']
+	Wait Until Element Is Visible    xpath=//input[@id='bill_kbank']
+	Click Element     xpath=//input[@id='bill_kbank']
 	Click Button      next-btn
 	
 	# Fill customer information
@@ -34,7 +35,9 @@ Buy An Item
 	Input Text    send_lastname     เจริญพงษ์
 	Input Text    send_address      156
 	Select From List By Label    send_country    ไทย
+	Set Selenium Speed    3
 	Select From List By Label    send_province   กรุงเทพมหานคร
+	Set Selenium Speed    2
 	Select From List By Label    send_city       ภาษีเจริญ
 	Input Text    send_district     บางหว้า
 	Element Should Contain    send_postcode    10160

@@ -32,7 +32,7 @@ Buy An Item
 	Wait Until Page Contains    ข้อมูลผู้สั่งซื้อ
 	Input Text    send_firstname    ราชันย์
 	Input Text    send_lastname     เจริญพงษ์
-	Input Text    send_address      156 ภนนกัลปพฤกษ์
+	Input Text    send_address      156
 	Select From List By Label    send_country    ไทย
 	Select From List By Label    send_province   กรุงเทพมหานคร
 	Select From List By Label    send_city       ภาษีเจริญ
@@ -42,8 +42,11 @@ Buy An Item
 	Input Text    send_mobile    0233344458
 	Click Button    next-btn
 
-	# Confirm order page
+	# Confirm order page and verify information
 	Wait Until Page Contains    สินค้าในตะกร้า 
-
+	Page Should Contain    ราชันย์ เจริฐพงษ์
+	Page Should Contain    156 บางหว้า ภาษีเจริญ กรุงเทพมหานคร 10160, ไทย
+	Page Should Contain    myemail@hotmail.com
+	Page Should Contain    0233344449
 
 *** Keywords ***

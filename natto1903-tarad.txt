@@ -1,0 +1,58 @@
+*** Settings ***
+Library	        Selenium2Library
+#Suite Teardown 	Close All Browsers
+
+*** Variables ***
+${URL}   http://www.tarad.com/product/5748253
+
+*** Testcases ***
+Rule tarad
+	[Template]   login
+	natto1903@gmail.com    xxx
+
+
+
+*** Keywords ***
+login
+	[Arguments]    ${user}    ${pass}
+	inputdata         ${user}    ${pass}
+	#Found          ${expected result}
+
+inputdata 
+	[Arguments]     ${user}    ${pass}
+	Open Browser    ${URL}
+	#Input Text      Email    ${user}
+	#Input Text      Passwd    ${pass}
+
+
+	Select From List    product_qty    2
+	Click Button        f_buy
+	Mouse Over          cart
+	Wait Until Page Contains    2
+	Wait Until Page Contains    1,980
+	#Click Button        cart
+	Click Element        btn-payment
+	Checkbox Should Be Selected    check_guest_register
+	Click Element        check_guest_register
+	Click Button         ซื้อทันทีไม่ต้องสมัครสมาชิก
+	Wait Until Page Contains    2,040.00
+	Click Element         bill-payment
+	Page Should Contain Radio Button    bill_kbank
+	Click Button          bill_kbank
+	Click Button          ขั้นตอนถัดไป
+	Input Text      send_firstname    ณัฐพล
+	Input Text      send_lastname     ชัยยศลาภ
+	Input Text      send_address      22/25 หมู่บ้านกรองทองทรอปิคอล ถนนเฉลิมพระเกียรติ
+	Select From List     send_province    1
+	Select From List     send_city        17_10250
+	Input Text      send_district         ประเวศ
+	Textfield Value Should Be     send_postcode       10250
+	Input Text      send_email       natto1903@hotmail.com
+	Input Text      send_mobile      0891087019
+	Click Button          ขั้นตอนถัดไป
+	Wait Until Page Contains     ณัฐพล ชัยยศลาภ
+    Wait Until Page Contains     22/25 หมู่บ้านกรองทองทรอปิคอล ถนนเฉลิมพระเกียรติ ประเวศ ประเวศ กรุงเทพมหานคร 10250, ไทย
+    Checkbox Should Be Selected    sms_checkbox
+    Click Element        sms_checkbox
+  
+	

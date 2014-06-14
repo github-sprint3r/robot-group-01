@@ -19,6 +19,19 @@ Buy Product
 	Click Button    f_buy
 	Wait Until Page Contains     จำนวน : 2 ชิ้น
 	Click Element    btn-payment
+	Wait Until Page Contains      สมาชิก รับส่วนลดในทุกโปรโมชั่นพิเศษ ทุกวัน ทุกสัปดาห์ ตลอดเดือน
+
+	Checkbox Should Be Selected     check_guest_register
+	Unselect Checkbox     check_guest_register
+	Checkbox Should Not Be Selected       check_guest_register
+	Click Button     ซื้อทันทีไม่ต้องสมัครสมาชิก
+
+	Wait Until Page Contains        กรุณาเลือก วิธีการชำระเงิน
+	#Click Element         โอนเงินผ่านธนาคาร
+
+
+
+
 
 
 	#Click Button    btn-payment

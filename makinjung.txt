@@ -14,7 +14,6 @@ Buy Product
 	Select From List By Value    product_qty    2
 	Click Button  f_buy
 	Wait until page contains	จำนวน : 2 ชิ้น 
-
-
+	Click Element    xpath=//div[@class='getitem8']/a
 
 *** Keywords ***

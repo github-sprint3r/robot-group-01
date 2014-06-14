@@ -8,8 +8,10 @@ ${URL}    http://www.tarad.com/product/5748253
 
 
 *** Testcases ***
-Search from Google
+Buy Product
 	Open Browser    ${URL}
+	Maximize Browser Window
+	Select From List By Value    product_qty    2
 
 
 

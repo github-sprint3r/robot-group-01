@@ -29,9 +29,4 @@ search data with keyword
 	
 	Click Element     next-btn
 	
-	Input Text     send_firstname     ณัฐพล
-
-   
-
-
 *** Keywords ***

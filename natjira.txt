@@ -1,0 +1,30 @@
+*** Settings ***
+Library	         Selenium2Library
+Suite Teardown	 Close Browsers
+
+*** Variables ***
+${TARAD URL}    http://www.tarad.com/product/5748253
+
+*** Test Case ***
+By Item
+	Choose Item
+	Buy With Non-Member
+	#Choose payment channel
+	#Fill in addess
+
+	
+*** Keywords ***
+Choose Item
+	Open Browser    ${TARAD URL}
+	Select From List By Value    product_qty    2
+	Click Button    f_buy
+	Wait Until Page Contains    2
+	Wait Until Page Contains    2
+	Click Button    btn-payment
+
+	Click Element    xpath=//div[@class='getitem8']/a
+
+Buy With Non-Member
+	Checkbox Should Not Be Selected    check_guest_register
+	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+

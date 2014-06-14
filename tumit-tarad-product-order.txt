@@ -1,0 +1,12 @@
+*** Setting ***
+Library    Selenium2Library
+Suite Teardown    Close All Browsers
+
+*** Variables ***
+${URL}    http://www.tarad.com/product/5748253
+
+*** Testcases ***
+Order product 5748253
+    Open Browser    ${URL}
+                    
+*** Keywords ***

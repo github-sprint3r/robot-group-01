@@ -10,6 +10,7 @@ Test Tarad's Product Checkout
   Open Product    5748253
   Buy Product     2
   Buy Without Register
+  Choose Payment Method
 
 *** Keywords ***
 Open Product
@@ -27,3 +28,9 @@ Buy Product
 Buy Without Register
   Unselect Checkbox    check_guest_register
   Click Element        xpath=//*[@id="login-frm-guest"]/fieldset/div[4]/button
+
+Choose Payment Method
+  Click Element                          xpath=//*[@id="bill-payment"]/a
+  Wait Until Page Contains Element       xpath=//*[@id="payment-method-list"]
+  Select Radio Button                    bank_receive    scb
+  Click Button                           xpath=//*[@id="next-btn"]

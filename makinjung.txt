@@ -12,6 +12,7 @@ Buy Product
 	Open Browser    ${URL}
 	Maximize Browser Window
 	Select From List By Value    product_qty    2
+	Click Button  f_buy
 
 
 

@@ -1,0 +1,37 @@
+﻿*** Settings ***
+Library			Selenium2Library
+#Suite Teardown	Close Browser
+
+
+*** Variables ***
+${GOOGLE URL}    https://www.tarad.com/product/5748253
+
+
+*** Test Cases ***
+search data with keyword
+	Open Browser    ${GOOGLE URL}
+	Maximize Browser Window
+	
+	Select From List By Index      product_qty     1
+	
+	Click Button     f_buy
+	
+	Wait Until Page Contains       2 ชิ้น
+	#Element Should Contain   flyout_cart      2 ชิ้น
+	
+	Click Element     btn-payment
+	
+	Click Button   ซื้อทันทีไม่ต้องสมัครสมาชิก
+	
+	Click Element     xpath=//li[@id="bill-payment"]/a
+	
+	Click Element     bill_ktb
+	
+	Click Element     next-btn
+	
+	Input Text     send_firstname     ณัฐพล
+
+   
+
+
+*** Keywords ***

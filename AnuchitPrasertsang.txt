@@ -19,10 +19,12 @@ Buy online
 	Unselect Checkbox             check_guest_register
 	Checkbox Should Not Be Selected   check_guest_register
 	Click Button                   ซื้อทันทีไม่ต้องสมัครสมาชิก
-	#Click Button                  /html/body/div[3]/div/div[3]/div[2]/div/form/fieldset/div[4]/button
 	Click Element                  xpath=//li[@id='bill-payment']/a
 	Click Element                  bill_bay
-	#Select Radio Button            bill_bay
 
 	Click Button                   next-btn
+	Wait Until Page Contains      ข้อมูลผู้สั่งซื้อ
+	Input Text                    send_firstname     Anuchit
+	Input Text                    send_lastname      Prasertsang
+send_firstname
 *** Keywords ***

@@ -17,5 +17,21 @@ Buy Product
 	Click Element    xpath=//div[@class='getitem8']/a
 	Checkbox Should Be Selected    check_guest_register 
 	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+	Click Element    xpath=//li[@id='bill-payment']/a
+	Select Radio Button    bank_receive    kbank
+	Click Button    next-btn
+	
+	Input Text    send_firstname    Israporn
+	Input Text    send_lastname    Ko.
+	Input Text    send_address    399/276 Jatujak
+	Select From List    send_country    ไทย
+	Select From List    send_province  กรุงเทพมหานคร
+	Select From List    send_city    คลองสาน
+	Select From List	send_district    จอทพล
+	Input Text    send_postcode    109000
+	Input Text    send_email    makinjung@gmail.com
+	Input Text    send_mobile    0802728885
+	Click Button    next-btn
+
 
 *** Keywords ***

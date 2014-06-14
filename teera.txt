@@ -1,0 +1,28 @@
+*** Settings ***
+Library    Selenium2Library
+#Suite Teardown    Close Browser
+
+*** Testcases ***
+Order good from Tarad
+  Open Browser    http://www.tarad.com/product/5748253
+  Select From List    product_qty    2
+  Click Button    f_buy
+  Mouse Over      icon-cart
+  Wait Until Page Contains    จำนวนรวม:2 ชิ้น
+  Click Element    xpath=//div[@class='getitem8']/a
+  Unselect Checkbox    check_guest_register
+  Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+  Click Element    xpath=//*[@id="bill-payment"]/a
+  Click Element    xpath=//*[@id="bill_bbl"]
+  Set Selenium Speed 3
+  Click Element    xpath=//*[@id="next-btn"]
+  Set Selenium Speed 0.5
+  Input Text       send_firstname    ธีระ
+  Input Text       send_lastname     ลายธีระพงศ์
+  Input Text       send_address      10//48
+  Select From List send_province    76
+  Select From List send_city        649_10540
+  Input Text       send_district    บางแก้ว
+  Input Text       send_email       xyz@mrteera.com
+  Input Text       send_mobile      0800000000
+  Click Button     ขั้นตอนถัดไป

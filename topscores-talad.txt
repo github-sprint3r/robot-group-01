@@ -25,3 +25,5 @@ Buy Product
   Click Element    btn-payment
 
 Buy Without Register
+  Unselect Checkbox    check_guest_register
+  Click Element        css=div.login_check_register_btn_TH

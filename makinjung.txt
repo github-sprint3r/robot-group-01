@@ -1,0 +1,19 @@
+*** Settings ***
+Library		Selenium2Library
+Suite Teardown	Close All Browsers
+
+
+*** Variables ***
+${URL}    http://www.tarad.com/product/5748253
+
+
+*** Testcases ***
+Buy Product
+	Open Browser    ${URL}
+	Maximize Browser Window
+	Select From List By Value    product_qty    2
+	Click Button  f_buy
+
+
+
+*** Keywords ***

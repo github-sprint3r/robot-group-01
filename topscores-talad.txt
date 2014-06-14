@@ -11,6 +11,7 @@ Test Tarad's Product Checkout
   Buy Product     2
   Buy Without Register
   Choose Payment Method
+  Fill Information          อานุภาพ    วิรัตนภานุ    ราชเทวี    TH    1    1   ราชเทวี    10400
 
 *** Keywords ***
 Open Product
@@ -31,6 +32,20 @@ Buy Without Register
 
 Choose Payment Method
   Click Element                          xpath=//*[@id="bill-payment"]/a
+  Set Selenium Speed                     1
   Wait Until Page Contains Element       xpath=//*[@id="payment-method-list"]
   Select Radio Button                    bank_receive    scb
-  Click Button                           xpath=//*[@id="next-btn"]
+  Click Button                           next-btn
+  Set Selenium Speed                     0.5
+
+Fill Information
+  [Arguments]    ${name}    ${surname}    ${address}    ${country}    ${province}    ${city}    ${district}    ${postcode}
+  Input Text    send_firstname    ${name}
+  Input Text    send_lastname     ${surname}
+  Input Text    send_address      ${address}
+  Select From List By Value       send_country     ${country}
+  Select From List By Value       send_province    ${province}
+  Select From List By Value       send_city        ${city}
+  Input Text    send_district     ${district}
+  Input Text    send_postcode     ${postcode}
+

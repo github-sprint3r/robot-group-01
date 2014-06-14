@@ -1,0 +1,29 @@
+*** Settings ***
+Library	         Selenium2Library
+Suite Teardown	 Close All Browsers
+
+*** Variables ***
+${TARAD URL}    http://www.tarad.com/product/5748253
+
+*** Test Case ***
+By Item
+	Open Browser    ${TARAD URL}
+	
+	
+*** Keywords ***
+Flow data
+	[Arguments]     ${keyword}     ${expected_result}
+	Search robot     ${keyword}
+	Result robot      ${expected_result}
+
+
+Search robot
+	[Arguments]    ${keyword}
+	Open Browser    ${GOOGLE URL}
+
+	Input Text    gbqfq    ${keyword}
+	Click Button    gbqfb
+
+Result robot
+	[Arguments]    ${expected result}
+	Wait Until Page Contains    ${expected_result}

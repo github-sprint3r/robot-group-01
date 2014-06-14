@@ -7,6 +7,13 @@ ${TARAD URL}     http://www.tarad.com/product/5748253
 Buy online
 	Open Browser     ${TARAD URL}
 	Maximize Browser Window
+	Select From List By Value     product_qty    2
+	Click Button                  f_buy
+	Wait Until Page Contains      จำนวนรวม:2 ชิ้น
+	Wait Until Page Contains Element    btn-payment    30
 
-
+	Click Element                  btn-payment
+	#Wait Until Page Contains      สั่งซื้อแบบไม่ใช่สมาชิก
+	#Unselect Checkbox             check_guest_register
+	#Click Button                  /html/body/div[3]/div/div[3]/div[2]/div/form/fieldset/div[4]/button
 *** Keywords ***

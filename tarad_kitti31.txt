@@ -1,0 +1,23 @@
+*** Settings ***
+Library    Selenium2Library
+#Suite Teardown    Close Browser
+*** Variables ***
+
+*** TestCases ***
+Open url tarad
+	Open Browser    http://www.tarad.com/product/5748253
+Select product
+	Select From List By Value    product_qty    2
+Click by product
+	Click Element    f_buy
+	#Element Should Contain    flyout_cart    2 ชิ้น
+	Wait Until Page Contains    2 ชิ้น
+Click Payment
+	Click Element    btn-payment
+Unselect Checkbox Register member
+	Unselect Checkbox    check_guest_register
+Click by not use member
+	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+	Click Element    xpath=//li[@id="bill-payment"]/a
+	Select Radio Button    bank_receive    bay
+*** Keywords ***

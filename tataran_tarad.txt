@@ -15,11 +15,6 @@ Tataran_tarad
 	Choose kbank to transfer money
 	Input your contact information
 	dont receive sms
-	
-	
-	
-	
-	Unselect Checkbox    sms_checkbox
 
 *** Keywords ***
 Open Product in Tarad.com

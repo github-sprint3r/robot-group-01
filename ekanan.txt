@@ -1,0 +1,41 @@
+*** Settings ***
+Library          Selenium2Library
+*** Variables ***
+
+*** Testcases ***
+BuyTarad
+	Open Browser    http://www.tarad.com/product/5748253
+	Select From List    product_qty   2
+	Click Button    f_buy
+	
+	Wait Until Page Contains   จำนวนรวม:2 ชิ้น
+	Click Element    btn-payment
+	Checkbox Should Be Selected    check_guest_register
+	Unselect Checkbox   check_guest_register
+	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+	Click Element   xpath=//a[@href='#bill-payment-detail']
+	Wait Until Page Contains   	กรุงไทย
+	Select Radio Button    bank_receive   ktb
+	
+	Wait Until Page Contains   	ขั้นตอนถัดไป
+	Click Button    ขั้นตอนถัดไป
+	
+	Wait Until Page Contains    ชื่อ 
+	Wait Until Page Contains    นามสกุล
+	Input Text    send_firstname    เอกนันท์
+	Input Text    send_lastname    ขันทอง
+	Input Text    send_address    355 ซอยพระราม 2(28)
+	Select From List By Value    send_province    1  
+	 
+	Wait Until Page Contains    จอมทอง
+	Select From List By Value    send_city    4_10150
+	Input Text    send_district    บางมด
+	Input Text    send_email    ekanan4@hotmail.com
+	Input Text    send_mobile    0840739471
+	Input Text    send_remark    robot
+	
+	Click Button    next-btn
+	
+	Checkbox Should Be Selected     sms_checkbox
+	Unselect Checkbox     sms_checkbox
+*** Keywords ***

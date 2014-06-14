@@ -1,0 +1,37 @@
+*** Settings ***
+Library		Selenium2Library
+Suite Teardown	Close All Browsers
+
+
+*** Variables ***
+${URL}    http://www.tarad.com/product/5748253
+
+
+*** Testcases ***
+Buy Product
+	Open Browser    ${URL}
+	Maximize Browser Window
+	Select From List By Value    product_qty    2
+	Click Button  f_buy
+	Wait until page contains	จำนวน : 2 ชิ้น 
+	Click Element    xpath=//div[@class='getitem8']/a
+	Checkbox Should Be Selected    check_guest_register 
+	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+	Click Element    xpath=//li[@id='bill-payment']/a
+	Select Radio Button    bank_receive    kbank
+	Click Button    next-btn
+	
+	Input Text    send_firstname    Israporn
+	Input Text    send_lastname    Ko.
+	Input Text    send_address    399/276 Jatujak
+	Select From List    send_country    ไทย
+	Select From List    send_province  กรุงเทพมหานคร
+	Select From List    send_city    คลองสาน
+	Select From List	send_district    จอทพล
+	Input Text    send_postcode    109000
+	Input Text    send_email    makinjung@gmail.com
+	Input Text    send_mobile    0802728885
+	Click Button    next-btn
+
+
+*** Keywords ***

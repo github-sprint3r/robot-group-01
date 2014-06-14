@@ -1,36 +1,60 @@
 *** Settings ***
 Library					Selenium2Library
-#Suite Teardown    		Close All Browsers
+Suite Teardown    		Close All Browsers
 
 *** Variables ***
 ${TARAD_URL}    		http://www.tarad.com/product/5748253
 
 *** Testcases ***
-Open Tarad
+Tataran_tarad
+	Open Product in Tarad.com
+	Choose 2 quentity on this product and add to cart
+	Make Sure you choose 2 quentity on this product
+	Click Button to Pay
+	Choose buy product without register
+	Choose kbank to transfer money
+	Input your contact information
+	dont receive sms
+	
+	
+	
+	
+	Unselect Checkbox    sms_checkbox
+
+*** Keywords ***
+Open Product in Tarad.com
 	Open Browser    		${TARAD_URL}
 	Maximize Browser Window
+Choose 2 quentity on this product and add to cart
 	Select From List By Index    product_qty    1
 	Click Button    		f_buy
+Make Sure you choose 2 quentity on this product
 	Wait Until Page Contains    จำนวนรวม:2 ชิ้น
+Click Button to Pay
 	Go To    http://order.tarad.com/cart/buy?language=thai
+Choose buy product without register
 	Unselect Checkbox    check_guest_register
 	Click Button    ซื้อทันทีไม่ต้องสมัครสมาชิก
+Choose kbank to transfer money
 	Click Element    xpath=//html/body/div[3]/div[2]/div[1]/div[4]/fieldset/div/ul/li[2]/a
 	Select Radio Button    bank_receive    kbank
-	Set Selenium Speed    1
-	Click Button    next-btn
 	Set Selenium Speed    0.5
+	Click Button    next-btn
+Input your contact information
+	Set Selenium Speed    0
 	Input Text    send_firstname    Tataran
 	Input Text    send_lastname    Thowpet
 	Input Text    send_address    197 RayGardenApartment (Room304) Nathog 9 Ratchadaphisek Road
 	Select From List By Value    send_province    1
-	Select From List By Value    send_city    828_10400
 	Set Selenium Speed    0.5
+	Select From List By Value    send_city    828_10400
 	Input Text    send_district    ดินแดง
 	Input Text    send_email    tataran024@gmail.com
-	Input Text    send_mobile    0922625553
+	Input Text    send_mobile
 	Click Button    next-btn
+dont receive sms
+	Unselect Checkbox    sms_checkbox
 
 
-*** Keywords ***
+
 

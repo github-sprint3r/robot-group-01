@@ -35,23 +35,25 @@ Buy An Item
 	Wait Until Page Contains    ข้อมูลผู้สั่งซื้อ
 	Input Text    send_firstname    ราชันย์
 	Input Text    send_lastname     เจริญพงษ์
-	Input Text    send_address      156
+	Input Text    send_address      หมู่บ้านสารสิน
 	Select From List By Label    send_country    ไทย
 	Set Selenium Speed    3
 	Select From List By Label    send_province   กรุงเทพมหานคร
 	Set Selenium Speed    2
 	Select From List By Label    send_city       ภาษีเจริญ
 	Input Text    send_district     บางหว้า
-	Element Should Contain    send_postcode    10160
+	${postcode text}=    Get Value    send_postcode                                                                                  
+    Should Be Equal    10160    ${postcode text}                                                                             
 	Input Text    send_email     myemail@hotmail.com
 	Input Text    send_mobile    0233344458
+	Set Selenium Speed    1
 	Click Button    next-btn
 
 	# Confirm order page and verify information
 	Wait Until Page Contains    สินค้าในตะกร้า 
-	Page Should Contain    ราชันย์ เจริฐพงษ์
-	Page Should Contain    156 บางหว้า ภาษีเจริญ กรุงเทพมหานคร 10160, ไทย
+	Page Should Contain    ราชันย์ เจริญพงษ์
+	Page Should Contain    หมู่บ้านสารสิน บางหว้า ภาษีเจริญ กรุงเทพมหานคร 10160, ไทย
 	Page Should Contain    myemail@hotmail.com
-	Page Should Contain    0233344449
+	Page Should Contain    0233344458
 
 *** Keywords ***

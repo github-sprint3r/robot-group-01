@@ -1,6 +1,6 @@
 *** Settings ***
 Library    Selenium2Library
-#Suite Teardown    Close All Browsers
+Suite Teardown    Close All Browsers
 
 *** Variables ***
 ${TARAD URL}    http://www.tarad.com/product/5748253
@@ -14,35 +14,47 @@ Purchase Goods
 *** Keywords ***
 Buy Product
 
+#Step1 select product
 	Open Browser    ${TARAD URL}
 	Select From List By Index     product_qty      1
-	Click Button    f_buy
-	Wait Until Page Contains     จำนวน : 2 ชิ้น
-	Click Element    btn-payment
+	Click Button                  f_buy
+	Wait Until Page Contains      จำนวน : 2 ชิ้น
+	Click Element                 btn-payment
 	Wait Until Page Contains      สมาชิก รับส่วนลดในทุกโปรโมชั่นพิเศษ ทุกวัน ทุกสัปดาห์ ตลอดเดือน
 
+#Step2 Guest Register
 	Checkbox Should Be Selected     check_guest_register
-	Unselect Checkbox     check_guest_register
+	Unselect Checkbox               check_guest_register
 	Checkbox Should Not Be Selected       check_guest_register
-	Click Button     ซื้อทันทีไม่ต้องสมัครสมาชิก
-
+	Click Button                    ซื้อทันทีไม่ต้องสมัครสมาชิก
 	Wait Until Page Contains        กรุณาเลือก วิธีการชำระเงิน
-	#Click Element         โอนเงินผ่านธนาคาร
 
+#Step3 select payment
+	Click Element                   xpath=//*[@id="bill-payment"]/a/span
+	Wait Until Page Contains        ท่านสามารถชำระเงินค่าผ่านทางตู้ ATM
+	Select Checkbox                 bill_kbank
+	Click Button                    next-btn
+	#Wait Until Page Contains        ข้อมูลผู้สั่งซื้อ
+	#Wait Until Page Contains        วิธีการจัดส่ง
+	#Set Selenium Speed    3 seconds
+	#Wait Until Element Is Visible     send_firstname
+	Wait Until Element Is Visible     next-btn
+	#Set Selenium Speed    1 seconds
 
+#Step4 Input Personal Information
+	Input Text     send_firstname      weerachai
+	Input Text     send_lastname       wongthongserm
+	Input Text     send_address        341 พรุราม 2
+	Select From List By Value          send_province       1
+	#Set Selenium Speed    2 seconds
+	Select From List By Value          send_city      816_10150
+	Input Text     send_district       แสมดำ
+	#Wait Until Page Contains          10150
+	Textfield Value Should Be          send_postcode    10150
+    Input Text     send_email          cybertung@gmail.com
+    Input Text     send_mobile         0807712424
+    #Set Selenium Speed    2 seconds
+    Click Button                      next-btn
+    Wait Until Element Is Visible     next-btn-submit
 
-
-
-
-	#Click Button    btn-payment
-	#Click Button    cart
-	#Wait Until Page Contains     รหัส387
-	#Click Button    btn-payment
-
-	#Wait Until Page Contains    สั่งซื้อแบบไม่ใช่สมาชิก
-
-	#Click Button    login-frm-guest
-
-	#Input Text    gbqfq    ${Keyword}
-	#Click Button    gbqfb
-	#Wait Until Page Contains    ${Expected Result}
+#Finished

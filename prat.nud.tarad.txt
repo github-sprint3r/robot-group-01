@@ -1,0 +1,27 @@
+*** Settings ***
+Library				Selenium2Library
+*** Variables ***
+
+
+*** Testcases ***
+Search from google
+	Open Browser    http://www.tarad.com/product/5748253 
+	Select From List By Index    product_qty    1
+	Click Button    f_buy
+	Wait Until Page Contains    จำนวนรวม:2 ชิ้น
+	Go To    http://order.tarad.com/cart/buy?language=thai
+	Wait Until Page Contains    สั่งซื้อแบบไม่ใช่สมาชิก
+	Unselect Checkbox    check_guest_register
+	Submit Form    login-frm-guest
+	Wait Until Page Contains    กรุณาเลือก วิธีการชำระเงิน
+	Click Link    xpath=//html/body/div[3]/div[2]/div/div[4]/fieldset/div/ul/li[2]/a
+	Wait Until Page Contains    กรุงไทย
+	Select Radio Button    bank_receive    bill_ktb
+	Click Button    next-btn
+	Set Selenium Speed    1
+	Input Text    send_firstname    pratz
+	Input Text    send_lastname    nudklin
+	Input Text    send_address    hell
+	Select From List By Index    send_province    3
+	#Close Browser
+*** Keywords ***

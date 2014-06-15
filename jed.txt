@@ -1,0 +1,67 @@
+*** Settings ***
+Library			Selenium2Library
+# Suite Teardown	Close All Browsers
+
+*** Variables ***
+${taradURL}     http://www.tarad.com/
+${firstname}    เจษฎางค์
+${lastname}     พิพัฒน์บรรจง
+${address}      กรุงเทพ,ไทยแลนด์
+${province}     1
+${district}     834_10140
+${subdistrict}     ทุ่งครุ
+${email}        jdeper@gmail.com
+${mobile}       0894844874
+${remark}       นี้คือหมายเหตุ
+${country}      TH
+
+*** Test Cases ***
+Open product
+	Open Browser    ${taradURL}product/5748253
+Select 2 product
+	Select From List By Value    product_qty    2
+	Click Element     f_buy
+Validate buying
+	Wait Until Element Is Visible    flyout_cart
+	Element Should Contain     flyout_cart     รหัส387
+	Element Should Contain     flyout_cart     2 ชิ้น
+checkout order
+	Click Element     btn-payment
+
+Skip register
+	Wait Until Element Is Visible    check_guest_register
+	Click Element     check_guest_register
+	Click Element     xpath=//div[@class='login_check_register_btn_TH']/button
+
+Payment selection
+	Wait Until Page Contains    กรุณาเลือก วิธีการชำระเงิน
+	Wait Until Element Is Visible     bill-payment
+	Click Element     xpath=//li[@id='bill-payment']/a
+	Click Element     bill_kbank
+	Set Selenium Speed    3 second
+	Click Element     next-btn
+
+Fill Initial user data
+	Wait Until Page Contains    ข้อมูลผู้สั่งซื้อ
+	Wait Until Element Is Visible     send_firstname
+	Input Text    send_firstname    ${firstname}
+	Input Text    send_lastname     ${lastname}
+	Input Text    send_address     ${address}
+set Country
+	Select From List By Value    send_country    ${country}
+	Set Selenium Speed    3 second
+set Province
+	Select From List By Value    send_province    ${province}
+	Set Selenium Speed    3 second
+set District
+	Select From List By Value    send_city    ${district}
+	Set Selenium Speed    3 second
+	Input Text    send_district     ${subdistrict}
+	Element Should Contain     send_postcode     10140
+	Input Text    send_email     ${email}
+	Input Text    send_mobile     ${mobile}
+	Input Text    send_remark     ${remark}
+	Set Selenium Speed   3 second
+	Click Element     next-btn
+
+*** Keywords ***

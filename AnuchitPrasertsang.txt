@@ -1,0 +1,41 @@
+*** Settings ***
+Library           Selenium2Library
+#Suite Teardown    Close Browser
+*** Variables ***
+${TARAD URL}     http://www.tarad.com/product/5748253
+*** Testcases ***
+Buy online
+	Open Browser     ${TARAD URL}
+	Maximize Browser Window
+	Select From List By Value     product_qty    2
+	Click Button                  f_buy
+	Set Selenium Implicit Wait    7
+	Wait Until Page Contains      จำนวนรวม:2 ชิ้น
+	Wait Until Page Contains Element    btn-payment    30
+
+	Click Element                  btn-payment
+	Wait Until Page Contains      สั่งซื้อแบบไม่ใช่สมาชิก
+	Checkbox Should Be Selected   check_guest_register
+	Unselect Checkbox             check_guest_register
+	Checkbox Should Not Be Selected   check_guest_register
+	Click Button                   ซื้อทันทีไม่ต้องสมัครสมาชิก
+	Click Element                  xpath=//li[@id='bill-payment']/a
+	Click Element                  bill_bay
+
+	Click Button                  next-btn
+	Set Selenium Speed            2 second
+	Wait Until Page Contains      dressuphouse
+	Set Selenium Speed            0.5 second
+	Input Text                    send_firstname     Anuchit
+	Input Text                    send_lastname      Prasertsang
+	Input Text                    send_address       RungSit
+	Select From List By Value     send_province       28
+	Wait Until Page Contains      send_city
+	Select From List By Value     send_city          345_12000
+	Input Text                    send_district      lukhok
+	Input Text                    send_email         Nong@gmail.com
+	Input Text                    send_mobile        0914725368
+	Input Text                    send_remark        So wh....
+	Click Button                  next-btn
+	Unselect Checkbox             sms_checkbox
+*** Keywords ***

@@ -4,29 +4,38 @@ Library			Selenium2Library
 
 
 *** Variables ***
-${GOOGLE URL}    https://www.tarad.com/product/5748253
+${Tarad URL}    https://www.tarad.com/product/5748253
 
 
 *** Test Cases ***
-search data with keyword
-	Open Browser    ${GOOGLE URL}
+Open Browser Tarad
+	Open Browser    ${Tarad URL}
 	Maximize Browser Window
-	
+
+Order
 	Select From List By Index      product_qty     1
-	
 	Click Button     f_buy
-	
 	Wait Until Page Contains       2 ชิ้น
-	#Element Should Contain   flyout_cart      2 ชิ้น
+	Click Element                  btn-payment
+	Wait Until Page Contains       สั่งซื้อแบบไม่ใช่สมาชิก
+	Click Element                  check_guest_register
+	Click Button                   ซื้อทันทีไม่ต้องสมัครสมาชิก
 	
-	Click Element     btn-payment
-	
-	Click Button   ซื้อทันทีไม่ต้องสมัครสมาชิก
-	
-	Click Element     xpath=//li[@id="bill-payment"]/a
-	
-	Click Element     bill_ktb
-	
-	Click Element     next-btn
+How to Pay
+	Wait Until Page Contains       กรุณาเลือก วิธีการชำระเงิน
+	Click Element                  xpath=//li[@id="bill-payment"]/a
+	Wait Until Page Contains       2021
+	Click Element                  bill_ktb
+	Set Selenium Speed             2
+	Click Element                  next-btn
+
+Fill the order
+	Input Text                     send_firstname      ณัฐพล
+	Input Text                     send_lastname       สิริโชติรัตน์
+	Input Text                     send_address        659/93
+	Select From List By Value      send_country        JP
+	Input Text                     send_email          nuttaponsir@gmail.com
+	Input Text                     send_mobile         0891126693
+	Click Element                  next-btn
 	
 *** Keywords ***

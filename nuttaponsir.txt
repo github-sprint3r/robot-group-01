@@ -8,6 +8,14 @@ ${Tarad URL}    https://www.tarad.com/product/5748253
 
 
 *** Test Cases ***
+Tarad
+	Open Browser Tarad
+	Order
+	How to Pay
+	Fill the order
+
+	
+*** Keywords ***
 Open Browser Tarad
 	Open Browser    ${Tarad URL}
 	Maximize Browser Window
@@ -26,16 +34,17 @@ How to Pay
 	Click Element                  xpath=//li[@id="bill-payment"]/a
 	Wait Until Page Contains       2021
 	Click Element                  bill_ktb
-	Set Selenium Speed             2
+	Set Selenium Speed             1
 	Click Element                  next-btn
 
 Fill the order
 	Input Text                     send_firstname      ณัฐพล
 	Input Text                     send_lastname       สิริโชติรัตน์
 	Input Text                     send_address        659/93
-	Select From List By Value      send_country        JP
+	Select From List By Value      send_country        TH
+	Select From List By Value      send_province       29
+	Select From List By Value      send_city           352_77000
+	Input Text                     send_district       เกาะหลัก
 	Input Text                     send_email          nuttaponsir@gmail.com
 	Input Text                     send_mobile         0891126693
 	Click Element                  next-btn
-	
-*** Keywords ***
